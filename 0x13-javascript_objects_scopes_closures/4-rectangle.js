@@ -2,16 +2,15 @@
 module.exports = class Rectangle {
     constructor(w, h) {
         if(w > 0 && h > 0) {
-            this.width = w;
-            this.height = h;
+            [this.width, this.height] = [w, h];
         }
     };
 
     print() {
-        for(i=0; i < this.height; i++){
-            let row = 0;
-            for(j=0; j < this.width; j++){
-                row+= 'x';
+        for(let i=0; i < this.height; i++){
+            let row = 'X';
+            for(let j=0; j < this.width-1; j++){
+                row+= 'X';
             }
             console.log(row);
         }
