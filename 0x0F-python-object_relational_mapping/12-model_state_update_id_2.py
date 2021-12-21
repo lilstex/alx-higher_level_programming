@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-''' Adds the State object “Louisiana” to the database hbtn_0e_6_usa
-    It takes 4 arguments - 1st arg = user
+''' Changes the name of a State object from the database hbtn_0e_6_usa
+    It takes 3 arguments - 1st arg = user
                          - 2nd arg = passwd
                          - 3rd arg = database_name
-                         - 4th arg = state_name to search
 '''
 import sys
 
@@ -18,7 +17,6 @@ engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(sys.argv[1], 
 Session = sessionmaker(bind=engine);
 session = Session();
 
-states = session.query(State).order_by(State.id);
-for state in states:
-    if (state.name == sys.argv[4]):
-        print('{}'.format(state.id));
+state = session.query(State).get(2);
+state.name = 'New Mexico';
+session.commit()
