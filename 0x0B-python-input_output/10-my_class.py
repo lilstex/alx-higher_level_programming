@@ -1,15 +1,22 @@
 #!/usr/bin/python3
-""" My class module
+"""
+This module has a class Student that defines a student by first_name, last_name and age
 """
 
-class MyClass:
-    """ My class
-    """
+class Student:
+    """Student class"""
+    def __init__(self, first_name, last_name, age):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
 
-    def __init__(self, name):
-        self.name = name
-        self.number = 0
-
-
-    def __str__(self):
-        return "[MyClass] {} - {:d}".format(self.name, self.number)
+    def to_json(self, attrs=None):
+        """Retrieve a dictionary representation of a Student"""
+        if attrs is not None:
+            data = {}
+            for k, v in self.__dict__.items():
+                if k in attrs:
+                    data[k] = v
+            return data
+        else:
+            return self.__dict__
